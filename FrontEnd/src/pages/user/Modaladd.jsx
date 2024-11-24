@@ -22,7 +22,7 @@ const ModalAdd = ({ isOpen, onClose }) => {
       method: "POST",
       headers: {
         "content-type": "Application/json",
-        //   Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(fData),
     });
@@ -81,7 +81,7 @@ const ModalAdd = ({ isOpen, onClose }) => {
                   type="text"
                   name="nama"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                  placeholder="name@company.com"
+                  placeholder="name user"
                   required
                 />
               </div>
@@ -95,21 +95,6 @@ const ModalAdd = ({ isOpen, onClose }) => {
                 <input
                   type="email"
                   name="email"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                  placeholder="name@company.com"
-                  required
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="jabatan"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white pl-1"
-                >
-                  Jabatan
-                </label>
-                <input
-                  type="text"
-                  name="jabatan"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                   placeholder="name@company.com"
                   required

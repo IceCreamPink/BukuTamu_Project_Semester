@@ -5,6 +5,8 @@ import User from "./pages/user/User";
 import Login from "./auth/Login";
 import Chart from "./components/Chart";
 import Tamu from "./pages/bukuTamu/Tamu";
+import Auth from "./auth/Auth";
+import Loader from "./components/Loader";
 
 function App() {
   return (
@@ -16,9 +18,9 @@ function App() {
             <Route path="user" element={<User />} />
             <Route path="tamu" element={<Tamu />} />
           </Route>
-        </Routes>
-        <Routes>
-          <Route path="/" element={<Login />}></Route>
+          <Route path="/" element={<Auth />}>
+            <Route path="/" element={<Login />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </>

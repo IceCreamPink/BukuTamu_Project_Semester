@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -7,16 +6,23 @@ import {
   faUsers,
   faBookBookmark,
   faAnglesLeft,
+  faPowerOff,
 } from "@fortawesome/free-solid-svg-icons";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/");
+  };
+
   const [open, setOpen] = useState(true);
   const Items = [
     { icon: faChartPie, title: "Dashboard", to: "/admin/dashboard" },
     { icon: faUsers, title: "User", to: "/admin/user" },
-    { icon: faBookBookmark, title: "Buku Tamu", to: "/admin/bukutamu" },
-    { icon: faChevronLeft, title: "Dashboard", to: "/admin/dashboard" },
+    { icon: faBookBookmark, title: "Buku Tamu", to: "/admin/tamu" },
+    
   ];
 
   return (
@@ -41,7 +47,6 @@ const Sidebar = () => {
               to={menu.to}
               key={index}
               className="flex items-center text-stone-400 text-sm cursor-pointer hover:text-blue-400 rounded-md p-2 mt-4 transition-all"
-              activeClassName="text-blue-600"
             >
               <li className="flex items-center">
                 <div className="flex-none w-14">
@@ -62,7 +67,28 @@ const Sidebar = () => {
                 </div>
               </li>
             </NavLink>
-          ))}
+          ))}{" "}
+          <li
+            onClick={handleLogout}
+            className="flex items-center text-stone-400 text-sm cursor-pointer hover:text-blue-400 rounded-md p-2 mt-4 transition-all"
+          >
+            <div className="flex-none w-14">
+              <FontAwesomeIcon
+                icon={faPowerOff}
+                size="2x"
+                className="mr-2 cursor-pointer duration-300 mt-4"
+              />
+            </div>
+            <div className="flex-none w-32">
+              <h5
+                className={`origin-left font-sans text-xl duration-500 flex text-end mt-4 justify-start ${
+                  open ? "" : "scale-0"
+                }`}
+              >
+                Log Out
+              </h5>
+            </div>
+          </li>
         </ul>
       </aside>
 

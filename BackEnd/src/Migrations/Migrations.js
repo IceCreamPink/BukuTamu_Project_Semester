@@ -1,5 +1,6 @@
 const mysql = require("mysql8");
 const koneksi = require("../Models/Koneksi");
+const { query } = require("express");
 const konekmysql = mysql.createConnection({
   host: "localhost",
   user: "IceCreamPink",
@@ -12,7 +13,6 @@ const createTableUsers = (koneksi) => {
     id int auto_increment primary key,
     nama varchar(100),
     email varchar(100) unique,
-    jabatan varchar(100),   
     password varchar(100)
     )`;
   koneksi.query(q, (err, result) => {
@@ -24,17 +24,28 @@ const createTableUsers = (koneksi) => {
     console.log("----------------------------");
   });
 };
-
-const createTableTamu = (koneksi)=>{
-  const q= `create table if not exists tamu(
+const createTableTamu = (koneksi) => {
+  const q = `create table if not exists tamu(
   id int auto_increment primary key, 
-  nama varchar(100), 
+  nama_tamu varchar(100), 
   no_hp varchar(15),
   jabatan varchar(50),
-  asal_unit_kerja varchar(100),
-  tujuan
-  )`
-}
+  unit_kerja varchar(100),
+  tujuan varchar(100), 
+  yang_dituju varchar(100), 
+  keterangan varchar(100),
+  create_at datetime default current_timestamp,
+  deleted_at datetime null
+    )`;
+  koneksi.query(q, (err, result) => {
+    if (err) {
+      console.error("Error tabel tamu", err.stack);
+    }
+    console.log("----------------------------");
+    console.log("Table Tamu berhasil dibuat");
+    console.log("----------------------------");
+  });
+};
 
 const migration = () => {
   konekmysql.connect((err) => {
@@ -59,6 +70,7 @@ const migration = () => {
 
         const koneksi = require("../Models/Koneksi");
         createTableUsers(koneksi);
+        createTableTamu(koneksi);
         konekmysql.end();
       }
     );

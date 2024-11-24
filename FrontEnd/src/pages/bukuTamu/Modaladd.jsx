@@ -18,11 +18,11 @@ const ModalAdd = ({ isOpen, onClose }) => {
       fData[el.name] = el.value;
     }
 
-    const response = await fetch("http://localhost:3000/api/user", {
+    const response = await fetch("http://localhost:3000/api/tamu", {
       method: "POST",
       headers: {
         "content-type": "Application/json",
-        //   Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(fData),
     });
@@ -36,11 +36,20 @@ const ModalAdd = ({ isOpen, onClose }) => {
         timer: 1000,
       });
       setTimeout(() => {
-        navigate("/admin/user");
+        navigate("/admin/tamu");
       });
     }
   };
-
+  //   {
+  //   "":"ouh",
+  //   "":"1",
+  //   "":"w",
+  //   "":"1",
+  //   "":"w",
+  //   "":"ppp",
+  //   "yang_dituju ":"a",
+  //   "keterangan":"a"
+  // }
   return (
     <div
       id="crud-modal"
@@ -75,57 +84,124 @@ const ModalAdd = ({ isOpen, onClose }) => {
                   htmlFor="Nama"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white pl-1"
                 >
-                  Nama
+                  Nama Tamu
                 </label>
                 <input
                   type="text"
-                  name="nama"
+                  name="nama_tamu"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                  placeholder="name@company.com"
+                  placeholder="Nekoo"
                   required
                 />
               </div>
               <div>
                 <label
-                  htmlFor="email"
+                  htmlFor="no_hp"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white pl-1"
                 >
-                  Email
+                  Nomer HP
                 </label>
                 <input
-                  type="email"
-                  name="email"
+                  type="number"
+                  name="no_hp"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                  placeholder="name@company.com"
+                  placeholder="085604671200"
                   required
                 />
               </div>
               <div>
                 <label
                   htmlFor="jabatan"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white pl-1"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
                   Jabatan
                 </label>
                 <input
                   type="text"
                   name="jabatan"
+                  placeholder="Admin"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                  placeholder="name@company.com"
                   required
                 />
               </div>
               <div>
                 <label
-                  htmlFor="password"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  htmlFor="unit_kerja"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white pl-1"
                 >
-                  Password
+                  Asal Unit Kerja
                 </label>
                 <input
-                  type="password"
-                  name="password"
-                  placeholder="••••••••"
+                  type="text"
+                  name="unit_kerja"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                  placeholder="Smkn 1 Ponorogo"
+                  required
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="yang_dituju"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white pl-1"
+                >
+                  Unit Kerja Tujuan
+                </label>
+                {/* <input
+                  type="text"
+                  name="yang_dituju"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                  placeholder="MTsN 1 Madiun"
+                  required
+                /> */}{" "}
+                <select
+                  name="tujuan"
+                  id="tujuan"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                >
+                  <option value="" className="text-center">-+Unit Tujuan Kerja+-</option>
+                  <option value="Kepala Sekolah">Kepala Sekolah</option>
+                  <option value="Wakil Kepala Sekolah">
+                    Wakil Kepala Sekolah
+                  </option>
+                  <option value="Akuntansi">Akuntansi</option>
+                  <option value="Bisnis Digital">Bisnis Digital</option>
+                  <option value="Desain Komunikasi Digital">
+                    Desain Komunikasi Digital
+                  </option>
+                  <option value="Menejemen Perkantoran">
+                    Menejemen Perkantoran
+                  </option>
+                  <option value="Rekayasa Preangkat Lunak">
+                    Rekayasa Preangkat Lunak
+                  </option>
+                </select>
+              </div>
+              <div>
+                <label
+                  htmlFor="tujuan"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  Nama Yang Dituju
+                </label>
+                <input
+                  type="text"
+                  name="tujuan"
+                  placeholder="Xai"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                  required
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="keterangan"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  Keterangan
+                </label>
+                <input
+                  type="text"
+                  name="keterangan"
+                  placeholder="Lorem Ipsum has been the industry's standard dummy t..."
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                   required
                 />
