@@ -24,15 +24,16 @@ const createTableUsers = (koneksi) => {
     console.log("----------------------------");
   });
 };
+
 const createTableTamu = (koneksi) => {
   const q = `create table if not exists tamu(
   id int auto_increment primary key, 
-  nama_tamu varchar(100), 
-  no_hp varchar(15),
-  jabatan varchar(50),
+  nama varchar(100), 
+  nohp varchar(100),
+  jabatan varchar(100),
   unit_kerja varchar(100),
-  tujuan varchar(100), 
-  yang_dituju varchar(100), 
+  tujuan enum('Kepala Sekolah','Waka Kurikulum','Waka Humas','Waka Sapras','Kaprodi Akutansi','Kaprodi BD','Kaprodi DKV','Kaprodi MP','Kaprodi RPL'),
+  yang_dituju varchar(100),
   keterangan varchar(100),
   create_at datetime default current_timestamp,
   deleted_at datetime null

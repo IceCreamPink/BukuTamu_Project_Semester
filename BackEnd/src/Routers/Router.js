@@ -12,6 +12,8 @@ router.get("/user/:id", authJwt, UserController.showUserById);
 router.put("/user/:id", authJwt, UserController.UpdateUser);
 router.delete("/user/:id", authJwt, UserController.destroyUser);
 
+// Search
+
 // Tamu
 router.get("/tamu", authJwt, Tamucontroller.index);
 router.post("/tamu", authJwt, Tamucontroller.storetamu);

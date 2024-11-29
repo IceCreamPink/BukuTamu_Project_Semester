@@ -6,7 +6,7 @@ const index = (req, res) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
-    if (result.lenght === 0) {
+    if (result.length === 0) {
       return res.status(404).json({ message: "tamu kosong" });
     }
     res.status(200).json(result);
@@ -15,18 +15,11 @@ const index = (req, res) => {
 
 // Status Post
 const storetamu = (req, res) => {
-  const {
-    nama_tamu,
-    no_hp,
-    jabatan,
-    unit_kerja,
-    tujuan,
-    yang_dituju,
-    keterangan,
-  } = req.body;
+  const { nama, nohp, jabatan, unit_kerja, tujuan, yang_dituju, keterangan } =
+    req.body;
   tamu.inserttamu(
-    nama_tamu,
-    no_hp,
+    nama,
+    nohp,
     jabatan,
     unit_kerja,
     tujuan,
@@ -50,7 +43,7 @@ const showtamu = (req, res) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
-    if (result.lenght === 0) {
+    if (result.length === 0) {
       return res.status(400).json({ message: "tamu tidak ada" });
     }
     res.status(200).json(result[0]);
@@ -60,19 +53,12 @@ const showtamu = (req, res) => {
 // Status Update
 const updatetamu = (req, res) => {
   const { id } = req.params;
-  const {
-    nama_tamu,
-    no_hp,
-    jabatan,
-    unit_kerja,
-    tujuan,
-    yang_dituju,
-    keterangan,
-  } = req.body;
+  const { nama, nohp, jabatan, unit_kerja, tujuan, yang_dituju, keterangan } =
+    req.body;
   tamu.updatetamu(
     id,
-    nama_tamu,
-    no_hp,
+    nama,
+    nohp,
     jabatan,
     unit_kerja,
     tujuan,

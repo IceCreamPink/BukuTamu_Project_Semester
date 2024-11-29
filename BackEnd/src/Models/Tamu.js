@@ -8,8 +8,8 @@ const selecttamu = (callback) => {
 
 // Insert (Tambah)
 const inserttamu = (
-  nama_tamu,
-  no_hp,
+  nama,
+  nohp,
   jabatan,
   unit_kerja,
   tujuan,
@@ -18,10 +18,10 @@ const inserttamu = (
   callback
 ) => {
   const q =
-    "INSERT INTO tamu(nama_tamu, no_hp, jabatan, unit_kerja, tujuan, yang_dituju, keterangan) VALUES(?,?,?,?,?,?,?)";
+    "INSERT INTO tamu(nama, nohp, jabatan, unit_kerja, tujuan,yang_dituju, keterangan) VALUES(?,?,?,?,?,?,?)";
   koneksi.query(
     q,
-    [nama_tamu, no_hp, jabatan, unit_kerja, tujuan, yang_dituju, keterangan],
+    [nama, nohp, jabatan, unit_kerja, tujuan, yang_dituju, keterangan],
     callback
   );
 };
@@ -35,8 +35,8 @@ const selecttamuById = (id, callback) => {
 // Update
 const updatetamu = (
   id,
-  nama_tamu,
-  no_hp,
+  nama,
+  nohp,
   jabatan,
   unit_kerja,
   tujuan,
@@ -45,22 +45,15 @@ const updatetamu = (
   callback
 ) => {
   const q =
-    "update tamu set nama_tamu=?, no_hp=?, jabatan=?, unit_kerja=?, tujuan=?, yang_dituju=?, keterangan=? where id=?";
+    "update tamu set nama=?, nohp=?, jabatan=?, unit_kerja=?, tujuan=?, yang_dituju=? , keterangan=? where id=?";
   koneksi.query(
     q,
-    [
-      nama_tamu,
-      no_hp,
-      jabatan,
-      unit_kerja,
-      tujuan,
-      yang_dituju,
-      keterangan,
-      id,
-    ],
+    [nama, nohp, jabatan, unit_kerja, tujuan, yang_dituju, keterangan, id],
     callback
   );
 };
+
+
 
 // Delete
 const deletetamu = (id, callback) => {

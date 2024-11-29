@@ -6,10 +6,7 @@ const selectUsers = (callback) => {
   const q = `SELECT * FROM users `;
   koneksi.query(q, callback);
 };
-const searchusers = (callback) => {
-  const q = `select * from users where nama like %%`;
-  koneksi.query(q, [nama, email], callback);
-};
+
 
 // Select USers ById
 const selectUsersByID = (id, callback) => {
@@ -54,7 +51,6 @@ const deleteUser = (id, callback) => {
 
 module.exports = {
   selectUsers,
-  searchusers,
   selectUsersByID,
   selectUserByEmail,
   insertUsers,

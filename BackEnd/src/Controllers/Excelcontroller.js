@@ -48,20 +48,21 @@ const xlsxTamu = async (req, res) => {
         const sheet = workbook.addWorksheet("Books");
 
         sheet.columns = [
-          // ,
-          // ,
-          // ,
-          // ,
-          // ,
-          //,
-          // ,
-          { header: "Nama", key: "nama_tamu", width: 20 },
-          { header: "Email", key: "no_hp", width: 20 },
-          { header: "Email", key: "jabatan", width: 20 },
-          { header: "Email", key: "unit_kerja", width: 20 },
-          { header: "Email", key: "tujuan", width: 20 },
-          { header: "Email", key: "yang_dituju", width: 20 },
-          { header: "Email", key: "keterangan", width: 20 },
+          //  varchar(100),
+          //    varchar(100),
+          //    varchar(100),
+          //    varchar(100),
+          //    enum('kepala_sekolah','waka_kurikulum','waka_humas','waka_sapras','kaprodi_akutansi','kaprodi_bd','kaprodi_dkv','kaprodi_mp','kaprodi_rpl'),
+          //    varchar(100),
+          //   keterangan varchar(100),
+          { header: "Nama", key: "nama", width: 20 },
+          { header: "Nomer HP", key: "nohp", width: 20 },
+          { header: "Jabatan", key: "jabatan", width: 20 },
+          { header: "Asal Unit Kerja", key: "unit_kerja", width: 20 },
+          { header: "Unit Kerja Tujuan", key: "tujuan", width: 20 },
+          { header: "Nama Yang Dituju", key: "yang_dituju", width: 20 },
+          { header: "Keterangan", key: "keterangan", width: 20 },
+          { header: "Tanggal Pengisian", key: "create_at", width: 15 },
         ];
 
         results.forEach((row) => {

@@ -22,14 +22,12 @@ const Sidebar = () => {
     { icon: faChartPie, title: "Dashboard", to: "/admin/dashboard" },
     { icon: faUsers, title: "User", to: "/admin/user" },
     { icon: faBookBookmark, title: "Buku Tamu", to: "/admin/tamu" },
-    
   ];
 
   return (
-    <div className="flex h-screen overflow-hidden">
-      {/* Sidebar */}
+    <div className="flex h-screen overflow-hidden ">
       <aside
-        className={`fixed top-0 left-0 h-full bg-stone-50 shadow-xl z-50 duration-300 p-5 pt-10 ${
+        className={`fixed top-0 left-0 h-full bg-stone-50 shadow-xl z-50 duration-300 p-5 ${
           open ? "w-64" : "w-20"
         }`}
       >
@@ -42,18 +40,28 @@ const Sidebar = () => {
           onClick={() => setOpen(!open)}
         />
         <ul>
+          {/* <div className="grid grid-cols-2 flex-none">
+            <img src="/img/gd.jpeg" alt="" className="w-24" />
+            <h1
+              className={`origin-left font-sans text-xl duration-500 flex text-end mt-4 justify-start ${
+                open ? "" : "scale-0"
+              }`}
+            >
+              Buku Tamu
+            </h1>
+          </div> */}
           {Items.map((menu, index) => (
             <NavLink
               to={menu.to}
               key={index}
-              className="flex items-center text-stone-400 text-sm cursor-pointer hover:text-blue-400 rounded-md p-2 mt-4 transition-all"
+              className="flex items-center text-stone-400 text-sm cursor-pointer hover:text-blue-400 rounded-md p-2 mt-4 transition-all "
             >
               <li className="flex items-center">
                 <div className="flex-none w-14">
                   <FontAwesomeIcon
                     icon={menu.icon}
                     size="2x"
-                    className="mr-2 cursor-pointer duration-300 mt-4"
+                    className="mr-2 cursor-pointer duration-300 mt-4 "
                   />
                 </div>
                 <div className="flex-none w-32">
@@ -67,7 +75,7 @@ const Sidebar = () => {
                 </div>
               </li>
             </NavLink>
-          ))}{" "}
+          ))}
           <li
             onClick={handleLogout}
             className="flex items-center text-stone-400 text-sm cursor-pointer hover:text-blue-400 rounded-md p-2 mt-4 transition-all"

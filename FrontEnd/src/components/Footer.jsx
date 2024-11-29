@@ -15,9 +15,11 @@ const Footer = () => {
             . All Rights Reserved.
           </span>
         </div>
+        
       </footer>
     </div>
   );
 }
 
 export default Footer
+

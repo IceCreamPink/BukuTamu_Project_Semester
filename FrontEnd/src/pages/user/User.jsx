@@ -14,9 +14,9 @@ import {
 
 const User = () => {
   const [activeModal, setActiveModal] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
   const openModal = (modal, id = null) => setActiveModal({ type: modal, id });
   const closeModal = () => setActiveModal(null);
-
   const [dataUser, setUser] = useState([]);
   const token = localStorage.getItem("token");
 
@@ -27,6 +27,12 @@ const User = () => {
     const data = await response.json();
     setUser(data);
   };
+
+  const filteredUsers = dataUser.filter(
+    (user) =>
+      user.nama.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      user.email.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   useEffect(() => {
     tampildata();
@@ -49,6 +55,7 @@ const User = () => {
       }
     });
   };
+  // const =()
 
   const xsml = () => {
     window.location.href = "http://localhost:3000/api/books/exportuser";
@@ -56,7 +63,50 @@ const User = () => {
 
   return (
     <>
-      <div className="flex flex-row-reverse gap-6 mb-8">
+      <style>
+        {`
+          @keyframes fadeInUp {
+            0% {
+              opacity: 0;
+              transform: translate3d(0, -100%, 0);
+            }
+            100% {
+              opacity: 1;
+              transform: translate3d(0, 0, 0);
+            }
+          }
+          @keyframes dropIn {
+            0% {
+              opacity: 0;
+              transform: scale(0);
+              animation-timing-function: cubic-bezier(0.34, 1.61, 0.7, 1);
+            }
+            100% {
+              opacity: 1;
+              transform: scale(1);
+            }
+          }
+          .fade-in-up {
+            animation: fadeInUp 0.3s ease-out;
+            transform-origin: center;
+            overflow: hidden;
+          }
+          .drop-in {
+            animation: dropIn 0.5s ease-out;
+            transform-origin: center;
+            overflow: hidden;
+          }
+        `}
+      </style>
+      <div className="flex flex-row-reverse gap-6 mb-8 fade-in-up">
+        {" "}
+        <button
+          onClick={xsml}
+          type="button"
+          className="bg-lime-400 hover:bg-lime-500 text-zinc-500 font-semibold hover:text-white py-2 px-4 border border-lime-500 hover:border-transparent rounded-lg"
+        >
+          <FontAwesomeIcon icon={faCloudArrowDown} />
+        </button>
         <div className="">
           <button
             type="button"
@@ -67,7 +117,6 @@ const User = () => {
             Tambah User
           </button>
         </div>
-
         <div className="grow"></div>
         <div className=" rounded-md border border-blue-500 overflow-hidden font-[sans-serif] p-2">
           <FontAwesomeIcon
@@ -78,10 +127,12 @@ const User = () => {
             type="search"
             placeholder="Search..."
             className=" outline-none bg-transparent text-gray-500 text-sm w-64"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
       </div>
-      <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+      <div className="relative overflow-x-auto shadow-md sm:rounded-lg drop-in">
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-transparent dark:bg-gray-700 dark:text-gray-400">
             <tr className="text-sm text-center shadow-sm h-11">
@@ -93,8 +144,8 @@ const User = () => {
             </tr>
           </thead>
           <tbody className="text-center">
-            {dataUser.length > 0 ? (
-              dataUser.map((item, index) => (
+            {filteredUsers.length > 0 ? (
+              filteredUsers.map((item, index) => (
                 <tr
                   className="bg-transparent border-b dark:bg-gray-800 dark:border-gray-700"
                   key={item.id}
@@ -140,16 +191,7 @@ const User = () => {
           </tbody>
         </table>
       </div>{" "}
-      <div className="mt-5 text-end">
-        <button
-          onClick={xsml}
-          type="button"
-          className="bg-lime-400 hover:bg-lime-500 text-zinc-500 font-semibold hover:text-white py-2 px-4 border border-lime-500 hover:border-transparent rounded"
-        >
-          Download Excel
-          <FontAwesomeIcon icon={faCloudArrowDown} className="pl-2" />
-        </button>
-      </div>
+      <div className="mt-5 text-end"></div>
       <Modaladd isOpen={activeModal?.type === "add"} onClose={closeModal} />
       <Modaledit
         isOpen={activeModal?.type === "edit"}

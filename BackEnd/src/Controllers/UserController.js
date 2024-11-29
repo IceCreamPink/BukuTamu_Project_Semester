@@ -8,7 +8,7 @@ const index = (req, res) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
-    if (result.lenght === 0) {
+    if (result.length === 0) {
       return res.status(404).json({ message: "User Kosong" });
     }
     res.status(200).json(result);
@@ -22,27 +22,12 @@ const showUserById = (req, res) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
-    if (result.lenght === 0) {
+    if (result.length === 0) {
       return res.status(404).json({ message: "User Tidakk Tersedia" });
     }
     res.status(200).json(result[0]);
   });
 };
-const searchusers = (req, res) => {
-  const { nama, email } = req.body;
-  User.searchusers(id, (err, result) => {
-    if (!nama || !email) {
-      return res.status(400).json({ error: err.message });
-    }
-    if (result.lenght === 0) {
-      return res.status(404).json({ message: "User Tidakk Tersedia" });
-    }
-    res.status(200).json(result[0]);
-  });
-};
-
-
-// // // Show ByEmail
 
 // Insert
 const storeUser = (req, res) => {
@@ -111,4 +96,12 @@ const login = (req, res) => {
 const logout = (req, res) => {
   res.status(200).json({ auth: false, token: null });
 };
-module.exports = { index, storeUser, showUserById, UpdateUser, destroyUser, login, logout };
+module.exports = {
+  index,
+  storeUser,
+  showUserById,
+  UpdateUser,
+  destroyUser,
+  login,
+  logout,
+};
