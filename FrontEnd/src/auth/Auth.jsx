@@ -2,7 +2,7 @@ import React, { Suspense, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 
 const Auth = () => {
-  // console.log("coba");
+  console.log("coba");
 
   useEffect(() => {
     document.body.classList.add("login-page");

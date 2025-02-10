@@ -22,7 +22,6 @@ const ModalAdd = ({ isOpen, onClose }) => {
       method: "POST",
       headers: {
         "content-type": "Application/json",
-        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(fData),
     });

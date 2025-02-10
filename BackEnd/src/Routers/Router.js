@@ -16,7 +16,7 @@ router.delete("/user/:id", authJwt, UserController.destroyUser);
 
 // Tamu
 router.get("/tamu", authJwt, Tamucontroller.index);
-router.post("/tamu", authJwt, Tamucontroller.storetamu);
+router.post("/tamu",  Tamucontroller.storetamu);
 router.put("/tamu/:id", authJwt, Tamucontroller.updatetamu);
 router.delete("/tamu/:id", authJwt, Tamucontroller.destroytamu);
 

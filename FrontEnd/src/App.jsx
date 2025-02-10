@@ -5,8 +5,9 @@ import User from "./pages/user/User";
 import Login from "./auth/Login";
 import Tamu from "./pages/bukuTamu/Tamu";
 import Auth from "./auth/Auth";
-import Chart2 from "./components/Chart2";
 import Modaluser from "./pages/user/Modaluser";
+import ModalAdd from "./pages/user/Modaladd";
+import ModalAddPublic from "./pages/user/ModaladdPublic";
 
 function App() {
   return (
@@ -17,11 +18,16 @@ function App() {
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="user" element={<User />} />
             <Route path="tamu" element={<Tamu />} />
-            <Route path="test" element={<Modaluser />} />
+            <Route path="test" element={<ModalAdd />} />
+            
+            
           </Route>
           <Route path="/" element={<Auth />}>
             <Route path="/" element={<Login />} />
           </Route>
+        </Routes>
+        <Routes>
+          <Route path="/tamu" element={<ModalAddPublic />} />
         </Routes>
       </BrowserRouter>
     </>

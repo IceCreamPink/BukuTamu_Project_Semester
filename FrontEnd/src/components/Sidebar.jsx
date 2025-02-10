@@ -13,7 +13,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 const Sidebar = () => {
   const navigate = useNavigate();
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    // localStorage.removeItem("token");
     navigate("/");
   };
 
