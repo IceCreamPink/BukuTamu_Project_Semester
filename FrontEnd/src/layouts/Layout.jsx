@@ -8,11 +8,11 @@ import Footer from "../components/Footer";
 const Layout = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
-  // console.log(token);
+  console.log(token);
 
   useEffect(() => {
     if (token === null) {
-      // navigate("/");
+      navigate("/");
       window.location.href = "/";
     }
   }, []);

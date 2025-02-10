@@ -137,6 +137,7 @@ const Login = () => {
       const response = await fetch("http://localhost:3000/api/login", {
         headers: {
           "Content-Type": "Application/json",
+        // Authorization: `Bearer ${token}` 
         },
         method: "POST",
         mode: "cors",
